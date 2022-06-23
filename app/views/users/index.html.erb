@@ -1,4 +1,11 @@
-<h1>List of Users<h1>
+<% if user_signed_in? %>
+  <p>
+    You are currently signed in as: <strong><%= current_user.username %></strong>
+  </p>
+  
+<% end %>
+
+<h3>List of Users</h3>
 
 <ol>
   <% @users.each do |user| %>
