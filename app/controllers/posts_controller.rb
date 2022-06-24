@@ -13,6 +13,7 @@ class PostsController < ApplicationController
     @user = current_user
     @post = @user.posts.create(post_params)
     redirect_to root_path
+    flash[:success] = "Great! You created a new post."
   end
 
   def post_params

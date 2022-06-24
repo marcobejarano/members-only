@@ -1,8 +1,13 @@
-<% if user_signed_in? %>
-  <p>
-    You are currently signed in as: <strong><%= current_user.username %></strong>
-  </p>
+<% if flash.any? %>
+  <% flash.each do |type, message| %>
+    <div>
+      <%= message %>
+    </div>
+  <% end %>
+  <br>
 <% end %>
+
+<%= render "/navbar" %>
 
 <h3>List of Posts</h3>
 
