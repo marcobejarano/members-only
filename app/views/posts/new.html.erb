@@ -1,12 +1,24 @@
+<%= render "/flash" %>
+
 <%= render "/navbar" %>
 
 <h1>Create a New Post</h1>
 
 <%= form_with model: @post do |form| %>
   <%= form.label "Title:" %>
-  <%= form.text_field :title %><br><br>
+  <%= form.text_field :title %><br>
+  <% @post.errors.full_messages_for(:title).each do |message| %>
+    <div>
+      <%= message %>
+    </div>
+  <% end %><br>
   <%= form.label "Body:" %>
-  <%= form.text_area :body %><br><br>
+  <%= form.text_area :body %><br>
+  <% @post.errors.full_messages_for(:body).each do |message| %>
+    <div>
+      <%= message %>
+    </div>
+  <% end %><br>
   <%= form.submit "Create Post" %>
 <% end %>
 <br>

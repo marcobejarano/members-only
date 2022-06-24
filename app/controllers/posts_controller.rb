@@ -12,8 +12,13 @@ class PostsController < ApplicationController
   def create
     @user = current_user
     @post = @user.posts.create(post_params)
-    redirect_to root_path
-    flash[:success] = "Great! You created a new post."
+    if @post.errors.any?
+      flash.now[:error] = "Ups! Fix up the mistake, please."
+      render :new, status: :unprocessable_entity
+    else
+      redirect_to @user
+      flash[:success] = "Great! You created a new post."
+    end
   end
 
   def post_params
